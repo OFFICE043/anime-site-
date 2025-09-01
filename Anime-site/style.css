@@ -1,0 +1,49 @@
+  body {
+      margin: 0;
+      font-family: "Spline Sans", "Noto Sans", sans-serif;
+      background-color: #0f1117;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 12px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #90adcb;
+    }
+
+
+    button:hover {
+      background: #2e4a61;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 480px) {
+      button {
+        min-width: 100%;
+      }
+    }
+
+        button {
+        background: #223649;
+        border: none;
+        border-radius: 12px;
+        padding: 20px;
+        color: white;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+button:not(:last-child) {
+  margin-bottom: 15px;
+}
