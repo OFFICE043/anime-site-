@@ -1,0 +1,360 @@
+  body {
+      margin: 0;
+      font-family: "Spline Sans", "Noto Sans", sans-serif;
+      background-color: #0f1117;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+  }
+
+  header {
+      display: flex;
+      justify-content: center;
+      /* центрируем содержимое по горизонтали */
+      align-items: center;
+      /* центрируем по вертикали */
+      border-bottom: 1px solid #2a2a2a;
+      padding: 12px 40px;
+  }
+
+
+  header h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+  }
+
+  .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+  }
+
+  .search-box {
+      justify-content: center;
+      /* центрируем содержимое по горизонтали */
+      display: flex;
+      align-items: center;
+      background: #2a2a2a;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 40px;
+      min-width: 160px;
+      max-width: 260px;
+      flex: 1;
+  }
+
+  .search-box input {
+      flex: 1;
+      border: none;
+      background: #2a2a2a;
+      color: white;
+      padding: 0 12px;
+      outline: none;
+      font-size: 14px;
+  }
+
+  .search-box svg {
+      margin-left: 12px;
+      color: #90adcb;
+  }
+
+  .actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex: 1;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+  }
+
+  .theme-btn {
+      background: #223649;
+      border: none;
+      border-radius: 12px;
+      padding: 0 12px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: white;
+  }
+
+  .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+  }
+
+  .content {
+      padding: 20px 160px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+  }
+
+  .search-bar {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      /* центрируем содержимое по горизонтали */
+      align-items: center;
+      /* центрируем по вертикали */
+  }
+
+  .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+  }
+
+  .anime-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+  }
+
+  .anime-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+  }
+
+  .anime-card .poster {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: #1a2a3a;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+  }
+
+  .anime-card .poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+  }
+
+  .anime-card:hover .poster img {
+      transform: scale(1.08);
+  }
+
+
+  .anime-card p {
+      margin: 2px 0;
+  }
+
+  .anime-card p.title {
+      font-weight: 600;
+      font-size: 15px;
+  }
+
+  .anime-card .genre,
+  .anime-card .rating {
+      font-size: 13px;
+      color: #90adcb;
+  }
+
+  /* === Popup (Модальное окно) === */
+  .popup {
+
+      position:fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      display: flex;
+      /* скрыто по умолчанию */
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1000;
+      padding: 1rem;
+      box-sizing: border-box;
+  }
+
+  .popup-card {
+      background: #2a2a2a;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      /* чтобы картинка и текст шли друг за другом */
+      overflow: hidden;
+      animation: fadeIn 0.25s ease;
+      animation: popupIn 0.25s ease;
+  }
+
+  .popup-poster img {
+      width: 100%;
+      display: block;
+      height: auto;
+      /* чтобы картинка не резалась */
+  }
+
+  .popup-body {
+      padding: 15px;
+      flex: none;
+      /* убираем растягивание */
+      height: auto;
+  }
+
+  .popup-body h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+  }
+
+  .popup-body p {
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: 120px;
+      width: 100%;
+      max-height: 50%;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      padding-right: 5px;
+      max-height: 120px;
+  }
+
+  .popup-actions {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+  }
+
+  .popup-actions button {
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+  }
+
+  .popup-actions .download {
+      background: #0f1117;
+      color: white;
+  }
+
+  .popup-actions .download:hover {
+      background: #0f1117;
+  }
+
+  .popup-actions .btn.ghost {
+      background: #f3f4f6;
+      color: #111;
+  }
+
+  .popup-actions .btn.ghost:hover {
+      background: #e5e7eb;
+  }
+
+  /* 🔹 Анимация появления */
+  @keyframes popupIn {
+      from {
+          opacity: 0;
+          transform: scale(0.95);
+      }
+
+      to {
+          opacity: 1;
+          transform: scale(1);
+      }
+  }
+
+  /* === Мобильная адаптация === */
+  @media (max-width: 600px) {
+      .popup-card {
+          max-width: 100%;
+          height: 100%;
+          border-radius: 0;
+      }
+
+      .popup-body {
+          padding: 1rem;
+          flex: 1;
+          overflow-y: auto;
+      }
+
+      .popup-poster img {
+          max-height: 250px;
+          object-fit: cover;
+      }
+  }
+
+
+  /* 📱 Адаптив */
+  @media (max-width: 1024px) {
+      .content {
+          padding: 20px 60px;
+      }
+  }
+
+  @media (max-width: 768px) {
+      header {
+          padding: 12px 20px;
+      }
+
+      .content {
+          padding: 20px;
+      }
+
+      header h2 {
+          font-size: 16px;
+      }
+
+      .anime-card p.title {
+          font-size: 14px;
+      }
+
+      .anime-card .genre,
+      .anime-card .rating {
+          font-size: 12px;
+      }
+  }
+
+  @media (max-width: 480px) {
+      header {
+          flex-direction: column;
+          align-items: flex-start;
+      }
+
+      .actions {
+          justify-content: space-between;
+          width: 100%;
+      }
+
+      .search-box {
+          max-width: 100%;
+      }
+
+      .content {
+          padding: 12px;
+      }
+
+      .anime-grid {
+          grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+          gap: 12px;
+      }
+
+      .anime-card p.title {
+          font-size: 13px;
+      }
+
+      .anime-card .genre,
+      .anime-card .rating {
+          font-size: 12px;
+      }
+    }
