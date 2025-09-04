@@ -1,26 +1,62 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uz">
 <head>
-<meta charset="UTF-8">
-<title>Anime WebApp — Главная</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="stylesheet" href="./style.css">
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=103881846', 'ym');
-
-    ym(103881846, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/103881846" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Site - Bosh sahifa</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Salom</h1>
-<script src="./main.js"></script>
+  <header>
+    <h1>Anime Site</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Bosh sahifa</a></li>
+        <li><a href="#">Anime qidirish</a></li>
+        <li><a href="#">Yangilar</a></li>
+        <li><a href="#" id="logout">Chiqish</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="welcome">
+      <h2>Hush kelibsiz!</h2>
+      <p>Bu yerda sevimli animelaringizni tomosha qilishingiz mumkin.</p>
+    </section>
+
+    <section id="anime-list">
+      <h2>Anime ro‘yxati</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://i.ibb.co/6rx0dBS/naruto.jpg" alt="Naruto">
+          <h3>Naruto</h3>
+        </div>
+        <div class="card">
+          <img src="https://i.ibb.co/G0jTt1N/onepiece.jpg" alt="One Piece">
+          <h3>One Piece</h3>
+        </div>
+        <div class="card">
+          <img src="https://i.ibb.co/8DM5Zm5/bleach.jpg" alt="Bleach">
+          <h3>Bleach</h3>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Anime Site. Barcha huquqlar himoyalangan.</p>
+  </footer>
+
+  <script type="module" src="supabase.js"></script>
+  <script type="module">
+    import { supabase } from "./supabase.js";
+
+    // Logout tugmasi
+    document.getElementById("logout").addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      window.location.href = "index.html";
+    });
+  </script>
 </body>
 </html>
