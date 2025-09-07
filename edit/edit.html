@@ -1,0 +1,45 @@
+here<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime tahrirlash</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <h1 style="text-align:center;">✏️ Anime tahrirlash</h1>
+
+  <form id="editForm">
+    <label>Nomi</label>
+    <input type="text" id="nomi" required>
+
+    <label>Tavsif</label>
+    <textarea id="tavsif" rows="3" required></textarea>
+
+    <label>Janr</label>
+    <input type="text" id="janr">
+
+    <label>Qismlar soni</label>
+    <input type="number" id="qismlar_soni" required>
+
+    <label>Chiqqan qismlar</label>
+    <input type="number" id="chiqqan_qismlar">
+
+    <label>Poster URL</label>
+    <input type="url" id="rasm_url" required>
+
+    <label>Online ko‘rish (URL ro‘yxati)</label>
+    <div id="episodes"></div>
+    <button type="button" id="add-episode">➕ Qism qo‘shish</button>
+
+    <label>Yuklab olish URL</label>
+    <input type="url" id="yuklab_url">
+
+    <br><br>
+    <button type="submit">💾 Saqlash</button>
+  </form>
+
+  <script type="module" src="../supabase.js"></script>
+  <script type="module" src="edit.js"></script>
+</body>
+</html>
