@@ -1,45 +1,32 @@
-hereimport { supabase } from "./supabase.js";
+import { supabase } from "./supabase.js";
 
-// Adminlar ro‘yxati
-const ADMINS = [7483732504]; 
+const listEl = document.getElementById("anime-list");
 
-const tg = window.Telegram?.WebApp;
-let userId = null;
-if (tg?.initDataUnsafe?.user?.id) {
-  userId = tg.initDataUnsafe.user.id;
-}
-
-// Admin tugmasini ko‘rsatish
-if (ADMINS.includes(userId)) {
-  document.getElementById("add-btn").classList.remove("hidden");
-  document.getElementById("add-btn").onclick = () => {
-    location.href = "./add/add.html";
-  };
-}
-
-// Anime ro‘yxatini yuklash
+// 🎬 Anime ro‘yxatini yuklash
 async function loadAnimes() {
-  const { data, error } = await supabase.from("animes").select("*").order("created_at", { ascending: false });
+  const { data, error } = await supabase.from("animes").select("*").order("id", { ascending: false });
 
   if (error) {
-    console.error("Xato:", error.message);
+    listEl.innerHTML = "<p>Xatolik: " + error.message + "</p>";
     return;
   }
 
-  const list = document.getElementById("anime-list");
-  list.innerHTML = "";
+  if (!data || data.length === 0) {
+    listEl.innerHTML = "<p>Hozircha anime qo‘shilmagan.</p>";
+    return;
+  }
 
+  listEl.innerHTML = "";
   data.forEach(anime => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `
-      <img src="${anime.rasm_url}" alt="rasm">
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${anime.rasm_url}" alt="${anime.nomi}">
       <h3>${anime.nomi}</h3>
+      <p>${anime.tavsif || ""}</p>
+      <a href="./detail/detail.html?id=${anime.id}">▶️ Batafsil</a>
     `;
-    div.onclick = () => {
-      location.href = `./detail/detail.html?id=${anime.id}`;
-    };
-    list.appendChild(div);
+    listEl.appendChild(card);
   });
 }
 
